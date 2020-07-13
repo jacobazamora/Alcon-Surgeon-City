@@ -1,0 +1,75 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <style>
+            body {
+	padding-top: 60px;
+}
+nav {
+  .navbar-brand {font-size: 40px;
+  text-align: left;
+  color: blue;
+
+}
+	.navbar-toggle {margin: 13px 15px 13px 0;}
+	a {
+		font-size: 16px;
+		padding-bottom: 18px;
+		padding-top: 18px ;
+    transition: all 0.3s ease;
+	}
+}
+#root {
+  margin-left: 39%;
+  margin-right: 39%;
+}
+.button {
+    margin: 20px;
+}
+
+
+            </style>
+        <title>Eyelight</title>
+    </head>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <a class="navbar-brand"  href="/help">Eyelight</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right">
+        <li class="active"><a href="/home">Home</a></li>
+        <li><a href="/help">Features</a></li>
+        <li><a href="/myvideos">Video</a></li>
+        <li><a href="/upload">Upload</a></li>
+        <li><a href="/">Signoff</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<body style="background-color:#DDDDDD;">
+
+
+
+        <form action="/handleUpload" method="post" enctype="multipart/form-data" id="root">
+            <input type="file" name="photo" class="button"/><BR>
+                <input type="submit" value="Upload" class="button"/>
+        </form>
+
+
+
+
+
+    </body>
+</html>

@@ -1,22 +1,18 @@
-"use strict";
+var mainText = document.getElementById("mainText");
+var submitBtn = document.getElementById("submitBtn");
+var fireHeading = document.getElementById("fireHeading");
 
-const server = require( "./server" );
+var firebaseHeadingRef = firebase.database().ref().child("Heading");
 
-const startServer = async () => {
-   try {
-       const config = {
-           host: "localhost",
-           port: 8080
-       };
+firebaseHeadingRef.on('value', function(datasnapshot){
+  fireHeading.innerText = datasnapshot.val();
+});
 
-       const app = await server( config );
-       await app.start();
+function submitClick() {
 
-       console.log( `Server running at http://${ config.host }:${ config.port }...` );
-         
-   } catch ( err ) {
-       console.log( "startup error:", err );
-   }
-};
+  var firebaseRef = firebase.database().ref();
 
-startServer();
+  var messageText = mainText.value;
+
+  firebaseRef.push().set(messageText);
+}

@@ -1,0 +1,90 @@
+<!Doctype html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <title>Firebase Basic Storage</title>
+    <style media="screen">
+      body {
+        display: flex;
+        min-height: 100vh;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      #uploader {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 50%
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+
+  <progress value="0" max="100" id="uploader">0%</progress>
+  <input type="file" value="upload" id="fileButton" />
+
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      //confidential
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    var uploader = document.getElementById('uploader');
+    var fileButton = document.getElementById('fileButton');
+
+    fileButton.addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      var storageRef = firebase.storage().ref('eye_vids/' + file.name);
+      storageRef.put(file).then(function(snapshot){
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+        snapshot.ref.getDownloadURL().then(function(url){
+          console.log('File available at', url);
+          document.getElementById('linkbox').innerHTML = '<a href="' +  url + '">Click For File</a>';
+        })
+      });
+      /*task.on('state_changed',
+
+        function progress(snapshot) {
+          var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          uploader.value = percentage;
+        },
+
+        function error(err) {
+
+        },
+
+        function complete() {
+
+        }
+
+      );*/
+
+      /*var gsReference = firebase.storage().refFromURL('gs://bucket/eye_vids/' + file.name);
+      var httpsReference = firebase.storage().refFromURL('https://firebasestorage.googleapis.com/b/bucket/o/eye_vids%20' + file.name);
+      var vidRef = storageRef.child('eye_vids/' + file.name);
+      vidRef.getDownloadURL().then(function(url) {
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function(event) {
+          var blob = xhr.response;
+        };
+        xhr.open('GET', url);
+        xhr.send();
+      }).catch(function(error) {
+        switch (error.code) {
+          case 'storage/object-not-found'
+        }
+      })*/
+    })
+
+
+  </script>
+  </body>
+</html>
